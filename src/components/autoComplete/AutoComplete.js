@@ -1,8 +1,10 @@
 import React from 'react';
 import './AutoComplete.css';
 import {apikey, url} from "./Constant";
-import clear from '../../clear.svg'
+import clear from '../../clear.svg';
+
 import {debounce} from 'throttle-debounce';
+import PropTypes from 'prop-types';
 
 
 class AutoComplete extends React.Component {
@@ -19,21 +21,27 @@ class AutoComplete extends React.Component {
         })
     }
 
-    static getDerivedStateFromError() {
-        return {
-            searchData: []
-        }
-    }
-
     state = {
         searchData: [],
         selectedData: [],
         autoSearchVal: ''
     };
 
+    //Reset search state in case on Error Occur before rendering
+    static getDerivedStateFromError() {
+        return {
+            searchData: []
+        }
+    }
+
+    //Reset search state in case on Error Occur after rendering
+    componentDidCatch(error, info) {
+        this.setState({searchData: []});
+    }
+
     userInput(value) {
         this.setState({autoSearchVal: value}, () => {
-            this.autocompleteSearchDebounced(this.state.value);
+            this.autocompleteSearchDebounced();
         });
     }
 
@@ -116,12 +124,12 @@ class AutoComplete extends React.Component {
                                 {
                                     this.state.searchData.map((searchResult, index) => (
 
-                                        <div onClick={() => {
-                                            (this.props.maxAllowedSearch > this.state.selectedData.length) &&
-                                            this.selectMovie(searchResult)
-                                        }}
-                                             key={searchResult.imdbID}
+                                        <div key={searchResult.imdbID}
                                              className="searchresult"
+                                             onClick={() => {
+                                                 (this.props.maxAllowedSearch > this.state.selectedData.length) &&
+                                                 this.selectMovie(searchResult)
+                                             }}
                                         >
                                             <div className="imageBlock">
                                                 {
@@ -144,5 +152,9 @@ class AutoComplete extends React.Component {
         );
     }
 }
+
+AutoComplete.propTypes = {
+    maxAllowedSearch: PropTypes.number.isRequired,
+};
 
 export default AutoComplete;

@@ -1,5 +1,14 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+#project Setup and different scripts
+1. install Node
+2. install npm (node package manager) 
+3. install serve globally (npm install -g serve)
+4. run command 'npm install' for installing all dependency.
+5. run below command for different purposes ('npm start' for dev and 'npm run build' and then 
+'serve -s build' for production run)
+
+
 ## Available Scripts
 
 In the project directory, you can run:
