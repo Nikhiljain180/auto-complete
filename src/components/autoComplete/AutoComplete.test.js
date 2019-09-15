@@ -7,3 +7,4 @@ it('renders without crashing', () => {
     ReactDOM.render(<AutoComplete />, div);
     ReactDOM.unmountComponentAtNode(div);
 });
+

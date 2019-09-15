@@ -27,6 +27,7 @@
     bottom: 5px;
     overflow: scroll;
     height: fit-content;
+    max-height: 300px;
 }
 
 .autoCompleteContainer .userSelectedDiv .searchContainer .resultContainerDiv .searchresult{

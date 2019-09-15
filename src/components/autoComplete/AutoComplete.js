@@ -85,9 +85,7 @@ class AutoComplete extends React.Component {
 
     render() {
         return (
-            <div className="autoCompleteContainer"
-                 ref={(event) => this.pageNode = event}
-            >
+            <div className="autoCompleteContainer" ref={(event) => this.pageNode = event}>
                 <div className="userSelectedDiv">
                     {
                         this.state.selectedData && this.state.selectedData.map((selectedData, index) => {
@@ -103,11 +101,14 @@ class AutoComplete extends React.Component {
                         })
                     }
                     <div className="searchContainer">
-                        <input onChange={(ev) => this.userInput(ev.target.value)}
-                               ref={(event) => this.searchNode = event}
-                               className="searchField"
-                               type="text"
-                        />
+                        {
+                            (this.props.maxAllowedSearch > this.state.selectedData.length) &&
+                            <input onChange={(ev) => this.userInput(ev.target.value)}
+                                   ref={(event) => this.searchNode = event}
+                                   className="searchField"
+                                   type="text"
+                            />
+                        }
 
                         {
                             this.state.searchData.length > 0 &&
