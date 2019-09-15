@@ -1,12 +1,8 @@
 import React from 'react';
 import ReactDOM, {render} from 'react-dom';
-import Enzyme from 'enzyme'
-import Adapter from 'enzyme-adapter-react-15';
 import TestRenderer from 'react-test-renderer';
 
 import AutoComplete from './AutoComplete';
-
-Enzyme.configure({adapter: new Adapter()});
 
 describe('auto complete', () => {
 
